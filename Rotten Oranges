@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+const int m = 3;
+const int n = 5;
+ 
+// Check if i, j is under the array limits of row and column
+bool isvalid(int i, int j)
+{
+    if (i >= 0 && i < m && j >= 0 && j < n)
+        return true;
+    return false;
+}
+ 
+int rotOranges(int v[m][n])
+{
+    bool change = false;
+    int nos = 2;
+    while (true) {
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+ 
+                
+                if (v[i][j] == nos) {
+                    if (isvalid(i + 1, j) && v[i + 1][j] == 1) {
+                        v[i + 1][j] = v[i][j] + 1;
+                        change = true;
+                    }
+                    if (isvalid(i, j + 1) && v[i][j + 1] == 1) {
+                        v[i][j + 1] = v[i][j] + 1;
+                        change = true;
+                    }
+                    if (isvalid(i - 1, j) && v[i - 1][j] == 1) {
+                        v[i - 1][j] = v[i][j] + 1;
+                        change = true;
+                    }
+                    if (isvalid(i, j - 1) && v[i][j - 1] == 1) {
+                        v[i][j - 1] = v[i][j] + 1;
+                        changed = true;
+                    }
+                }
+            }
+        }
+ 
+        if (!change)
+            break;
+        change = false;
+        nos++;
+    }
+ 
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+
+            if (v[i][j] == 1)
+                return -1;
+        }
+    }
+ 
+   return nos - 2;
+}
+ 
+// Driver function
+int main()
+{
+ 
+    int v[R][C] = { { 2, 1, 0, 2, 1 },
+                    { 1, 0, 1, 2, 1 },
+                    { 1, 0, 0, 2, 1 } };
+ 
+    cout <<  rotOranges(v);
+ 
+    return 0;
+}
+
